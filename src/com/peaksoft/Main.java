@@ -19,9 +19,6 @@ public class Main {
                 Truck.createTruck(3, "IVACO Y", "", Truck.State.BASE),
         };
 
-      //  Truck[] trucks1 = trucks;
-
-
         //String gson1 = gson.toJson(trucks);
         //  writeTruck(gson1);
 
@@ -36,7 +33,6 @@ public class Main {
         }
 
     }
-
     private static void writeTruck(String object) {
         Path write = Paths.get(String.valueOf(WRITE_PATH));
         try {
