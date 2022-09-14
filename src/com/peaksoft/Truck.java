@@ -1,18 +1,12 @@
 package com.peaksoft;
-
-import java.io.FileReader;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-
 import static com.peaksoft.Main.*;
 import static com.peaksoft.Utils.readFile;
 
 public class Truck {
     private int id;
     private String name;
-    private String driver;
+    private Driver driver;
     private State state;
 
     public int getId() {
@@ -31,11 +25,11 @@ public class Truck {
         this.name = name;
     }
 
-    public String getDriver() {
+    public Driver getDriver() {
         return driver;
     }
 
-    public void setDriver(String  driver) {
+    public void setDriver(Driver driver) {
         this.driver = driver;
     }
 
@@ -47,7 +41,7 @@ public class Truck {
         this.state = state;
     }
 
-    public static  Truck createTruck(int id, String name, String driver, State state){
+    public static  Truck createTruck(int id, String name, Driver driver, State state){
         Truck truck = new Truck();
         truck.id = id;
         truck.name = name;
@@ -57,45 +51,18 @@ public class Truck {
         return truck;
     }
      public static void printTruck(Path path) {
+
          Truck[] trucks = gson.fromJson(readFile(path), Truck[].class);
          System.out.println("           Truck Info       ");
-         System.out.println("___________________________________");
-         System.out.println("| id |   Truck   | Driver | State |");
-         System.out.println("|_________________________________|");
+         System.out.println("________________________________________");
+         System.out.println("| id |   Truck   |    Driver   |  State|");
+         System.out.println("|______________________________________|");
 
          for (Truck truck : trucks) {
              System.out.println(truck);
          }
-         System.out.println("|_________________________________|");
+         System.out.println("----------------------------------------");
      }
-
-  /*  public static void writeTruck(String object, Path path) {
-        Path write = Paths.get(String.valueOf(path));
-        try {
-            Files.writeString(write, object, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
-
-        } catch (Exception e) {
-            e.getMessage();
-        }
-    }
-
-
-
-    public static String readTruck() {
-        String json = "";
-        try {
-            FileReader reader = new FileReader(String.valueOf(WRITE_PATH));
-            int a;
-            while ((a = reader.read())!= -1) {
-                json+= (char) a;
-            }
-        } catch (Exception e) {
-            e.getMessage();
-        }
-        return json;*/
-
-
-
 
     @Override
     public String toString() {
@@ -103,7 +70,7 @@ public class Truck {
                 "| " + id +
                 "  |  " + name   +
                 "  |   " + driver   +
-                "     | " + state + "  |"
+                "      | " + state + "  |"
                 ;
     }
 

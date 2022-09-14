@@ -1,10 +1,6 @@
 package com.peaksoft;
 
-import java.io.FileReader;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 
 import static com.peaksoft.Main.*;
 import static com.peaksoft.Utils.readFile;
@@ -13,7 +9,11 @@ import static com.peaksoft.Utils.readFile;
 public class Driver {
     private int id;
     private String name;
-    private String truckName;
+    private String truck;
+
+    public Driver() {
+    }
+
 
     public int getId() {return id;}
 
@@ -23,38 +23,39 @@ public class Driver {
 
     public void setName(String name) {this.name = name;}
 
-    public String getTruckName() {return truckName;}
+    public String getTruck() {return truck;}
 
-    public void setTruckName(String truckName) {this.truckName = truckName;}
+    public void setTruck(String truck) {this.truck = truck;}
 
     public static Driver createDriver(int id, String name, String truckName){
         Driver driver = new Driver();
         driver.id = id;
         driver.name = name;
-        driver.truckName = truckName;
+        driver.truck = truckName;
 
         return driver;
     }
 
     public static void printDriver(Path path) {
-        Driver[] drivers = gson.fromJson(readFile(PATH_DRIVER), Driver[].class);
-        System.out.println("        Driver Info       ");
-        System.out.println("________________________________");
-        System.out.println("|id |     Driver   |    Bus    | ");
-        System.out.println("|______________________________|");
 
-        for (Driver driver : drivers) {
-            System.out.println(driver);
+            Driver[] drivers = gson.fromJson(readFile(PATH_DRIVER), Driver[].class);
+            System.out.println("\n        Driver Info       ");
+            System.out.println("________________________________");
+            System.out.println("|id |     Driver    |    Bus   | ");
+            System.out.println("|______________________________|");
+
+            for (Driver driver : drivers) {
+                System.out.println(driver);
+            }
+            System.out.println("--------------------------------\n");
         }
-        System.out.println("________________________________");
-    }
 
         @Override
         public String toString () {
             return "" +
                     "| " + id +
                     " |     " + name +
-                    "     |  " + truckName + "        |"
+                    "     |  " + truck + "        |"
                     ;
         }
     }

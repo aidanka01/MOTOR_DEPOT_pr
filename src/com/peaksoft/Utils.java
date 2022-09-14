@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 public class Utils {
-    public static void writeFile(String object, Path path){
+    public static void writeFile(String object, Path path) {
         Path write = Paths.get(String.valueOf(path));
         try {
             Files.writeString(write, object, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
@@ -15,7 +15,6 @@ public class Utils {
         } catch (Exception e) {
             e.getMessage();
         }
-
     }
     public static String readFile(Path path){
         String json = "";
